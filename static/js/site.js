@@ -1,0 +1,21 @@
+
+const EV=[["At dawn","Ved Mangalik & Nahabat","Sacred Vedic chants and Nahabat, invoking blessings, peace and harmony.","d"],["5:45 AM","Usha Kirtan","Devotional kirtans on the streets welcome the dawn.","d"],["6:34 AM","Morning congregational prayer","Collective prayer and reading of divine messages of Sree Sree Thakur.","d"],["7:15 AM","Nadaswaram","","g"],["7:30 AM","Viswashanti Swasti Maha Yajna","A sacred offering of prayers for universal peace, harmony and the welfare of humanity, embracing the spirit of love and togetherness.","d"],["8:00 AM","Bhajanamrutam","","g"],["8:30 AM","Painting competition","For young artists, letting their creativity shine.","c"],["9:00 AM – 5:00 PM","Health camp","Free blood, eye and dental screenings, promoting wellness with Thakur’s ideology.","s"],["9:00 AM – 5:00 PM","Career counselling","Career pathways, emerging skills and opportunities from industry experts.","s"],["9:00 AM – 5:00 PM","Legal counselling","Expert guidance and answers to your legal queries.","s"],["9:30 AM","Utsav inauguration","Lamp lighting, inaugural address and felicitation of delegates.","g"],["10:00 AM","Samskruthi Sinchana","Music, storytelling and narration with Karnataka Saregamapa artists.","g"],["11:15 AM","Divine discussions","Explore the life, teachings and timeless philosophy of Sree Sree Thakur through 2 panel discussions: Sree Sree Thakur’s philosophy on Health & Wellness, and Navigating Modern Life Through the Wisdom of Sree Sree Thakur.","g"],["All day","Yajan Chowki and exhibition","Exhibition on Sree Sree Thakur’s life and message.","g"],["1:15 PM","Fusion dance","Bharatanatyam by a renowned dance exponent from Karnataka.","x"],["After 2:00 PM","Felicitation of meritorious students","Recognizing academic excellence and inspiring young achievers.","c"],["2:15 PM","Sishuloka","Performance by the children of Bengaluru Satsang.","c"],["4:00 PM","Classically Fused","Folk and devotional music by eminent film and TV artists.","x"],["5:54 PM","Evening congregational prayer","A soulful gathering with gathered energy of the day. Immerse in collective prayer, devotion and spiritual harmony at the Lotus feet of Sree Sree Thakur.","d"],["6:30 PM","Music band","Live performance by popular Kannada film and music artists.","x"]];
+const CAT={d:"Immerse in divinity",g:"Guruvandane",s:"Janakalyana Seva",c:"For children",x:"Special attractions"};
+const tl=document.getElementById('tl'),chips=document.getElementById('chips');
+tl.innerHTML=EV.map(e=>`<li class="ev" data-c="${e[3]}"><time>${e[0]}</time><div><h3>${e[1]}</h3>${e[2]?`<p>${e[2]}</p>`:''}<span class="tag">${CAT[e[3]]}</span></div></li>`).join('');
+chips.innerHTML=['all','d','g','s','c','x'].map((k,i)=>`<button class="chip" data-k="${k}" aria-pressed="${i==0}">${k=='all'?'Full day':CAT[k]}</button>`).join('');
+chips.addEventListener('click',ev=>{const b=ev.target.closest('.chip');if(!b)return;const k=b.dataset.k;
+ chips.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c===b));
+ tl.querySelectorAll('.ev').forEach(li=>{li.hidden=!(k==='all'||li.dataset.c===k)})});
+const start=new Date('2026-12-20T05:45:00+05:30'),end=new Date('2026-12-20T22:00:00+05:30');
+const $=id=>document.getElementById(id),pad=n=>String(n).padStart(2,'0');
+function tick(){const n=new Date();
+ if(n>end){$('cdLabel').textContent='Thank you for celebrating with us';$('units').style.display='none';return}
+ if(n>=start){$('cdLabel').textContent='Utsav is happening today. Jai Guru!';$('units').style.display='none';return}
+ const s=Math.floor((start-n)/1000);$('cd').textContent=Math.floor(s/86400);$('ch').textContent=pad(Math.floor(s%86400/3600));$('cm').textContent=pad(Math.floor(s%3600/60));$('cs').textContent=pad(s%60)}
+tick();setInterval(tick,1000);
+$('cal').href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Utsav 2026 · Satsang Vihar Bengaluru')+'&dates=20261220T001500Z/20261220T163000Z&location='+encodeURIComponent('Karnashree Layout, Medahalli, Bengaluru');
+
+(function(){const box=document.querySelectorAll('input[name=interests]'),hint=document.getElementById('perfhint');
+ if(!hint)return;const upd=()=>hint.classList.toggle('on',[...box].some(b=>b.checked&&(b.value==='Dancing performance'||b.value==='Sishuloka')));
+ box.forEach(b=>b.addEventListener('change',upd));upd();})();

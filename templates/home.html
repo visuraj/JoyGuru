@@ -1,0 +1,96 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Utsav 2026 · Satsang Vihar Bengaluru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/site.css' %}"></head><body>
+<nav><div class="in">
+ <a class="brand" href="#top">Satsang Vihar Bengaluru</a>
+ <a class="lk" href="#about">About</a><a class="lk" href="#schedule">Programme</a><a class="lk" href="#register">Register</a><a class="lk" href="#venue">Venue</a><a class="lk" href="{% url 'accommodation' %}">Accommodation</a><a class="lk" href="#contact">Contact</a>
+ <a class="btn primary" href="#register">Register</a>
+</div></nav>
+<header class="landing" id="top">
+ <div class="land-img">
+  <img src="{% static 'img/landing.jpg' %}" alt="Utsav 2026: Satsang Vihar Bengaluru invites you to the 139th Holy Birth Anniversary of Parama Premamaya Sree Sree Thakur Anukulchandra and the 12th Holy Inaugural Anniversary of Satsang Vihar Bengaluru. Event date 20th December 2026, Karnashree Layout, Medahalli, Bengaluru." width="2430" height="906" fetchpriority="high">
+ </div>
+ <div class="land-cta">
+  <a class="btn primary" href="#register">Register now</a>
+  <a class="btn ghost" href="#schedule">See the programme</a>
+  <a class="btn ghost" href="{% url 'accommodation' %}">Book accommodation</a>
+ </div>
+</header>
+<div class="count" aria-live="polite"><div class="wrap"><p id="cdLabel">Utsav begins in</p>
+ <div class="units" id="units"><div class="unit"><b id="cd">–</b><span>days</span></div><div class="unit"><b id="ch">–</b><span>hours</span></div><div class="unit"><b id="cm">–</b><span>minutes</span></div><div class="unit"><b id="cs">–</b><span>seconds</span></div></div></div></div>
+<main>
+<section id="about"><div class="wrap">
+ <h2>A blissful day for you and your family</h2><hr class="rule">
+ <p class="sub">From the first notes at dawn to music under the evening sky, a day of prayer, discovery and seva awaits you.</p>
+ <div class="about">
+  <div class="panel"><h3>Param Premamay Sree Sree Thakur Anukulchandra</h3>
+   <blockquote>Do never die, nor cause death but resist death to death.</blockquote>
+   <p>With this immortal call, <b>Param Premamaya Sree Sree Thakur Anukulchandra</b>, Fulfiller of the Best of the Age, awakened slumbering minds and rejuvenated innumerable dwindling souls. His boundless love embraced humanity, inspiring each individual towards the continuous journey of <b>Being and Becoming</b>.</p>
+   <p>His philosophy of spirituality encompasses every dimension of human existence — from science and education to economic growth, social transformation and political reformation.</p>
+   <p>His ideology touched the entirety of life, illuminating the path for humanity to continually evolve in thought, character and action.</p></div>
+  <div class="panel"><h3>Satsang — A Growing Movement</h3>
+   <p>Satsang is a man-making organisation that grew around the life and teachings of Param Premamaya Sree Sree Thakur Anukulchandra. Inspired by His vision, it seeks to renew the world by nurturing the growth and transformation of each individual.</p>
+   <p>Today, under the aegis of Param Pujyapad Sree Sree Acharyadev, Satsang continues to bring meaningful change to the lives of millions, with a presence that spans the globe. People of every background, caste, creed, language, and nationality come together in shared devotion to the path, with the Living Ideal shining as their guiding star.</p></div>
+  <div class="panel" style="grid-column:1/-1"><h3>Satsang Vihar Bengaluru</h3>
+   <p>In a city known for innovation, enterprise and a fast-paced life, Satsangees in Bengaluru came together with a shared purpose — to spread the love and message of Sree Sree Thakur, in keeping with the wish of Param Pujyapad Sree Sree Acharyadev.</p>
+   <p>This collective effort led to the establishment of Satsang Vihar at Medahalli, Bengaluru, inaugurated in 2014. Since then, it has been a centre for spiritual gatherings, cultural activities, community engagement and service, bringing the teachings of Sree Sree Thakur closer to people across the city.</p>
+   <p>To know more visit <a href="https://www.satsang.org.in/" target="_blank" rel="noopener">satsang.org.in</a></p></div>
+ </div></div></section>
+<section id="schedule" style="padding-top:0"><div class="wrap">
+ <h2>Utsav programme</h2><hr class="rule"><p class="sub">Choose a category to filter the day’s schedule.</p>
+ <div class="chips" id="chips" role="group" aria-label="Filter programme"></div><ol class="tl" id="tl"></ol></div></section>
+<section id="venue" style="padding-top:0"><div class="wrap info">
+ <div class="panel"><h3>Holy Prasadam</h3><div class="meal"><b>Breakfast</b><span>8:00 AM onwards</span></div><div class="meal"><b>Lunch</b><span>12:00 PM onwards</span></div><div class="meal"><b>Dinner</b><span>8:00 PM onwards</span></div></div>
+ <div class="panel"><h3>Venue</h3><p><b style="color:var(--ink)">Karnashree Layout</b><br>Medahalli, Bengaluru East<br>Near Satsang Vihar, Bengaluru</p><p><a href="https://maps.app.goo.gl/KC1rHwL5yjH7HPE87" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600">Open in Maps</a></p></div>
+ <div class="panel"><h3>Janakalyana Seva</h3><p>Free for everyone, 9 AM to 5 PM: health camp with blood, eye and dental tests, career counselling, and legal counselling.</p></div>
+</div></section>
+<section id="register" style="padding-top:0"><div class="wrap">
+ <h2>Register for Utsav</h2><hr class="rule">
+ {% if reg %}
+ <div class="panel done" tabindex="-1" id="done">
+  <h3>Registration received</h3>
+  <p>Thank you, <b>{{ reg.name }}</b>. Your registration ID is <b>{{ reg.reg_id }}</b>.</p>
+  <p>{{ reg.adults }} adult(s), {{ reg.children }} child(ren) · {{ reg.city }}</p>
+  <p class="note">Your details are saved with the Utsav Committee. Please keep your registration ID.</p>
+  <div class="cta" style="justify-content:flex-start"><a class="btn primary" href="{{ wa_url }}" target="_blank" rel="noopener">Send details on WhatsApp</a><a class="btn ghost" href="{% url 'home' %}#register">Register another person</a></div>
+ </div>
+ {% else %}
+ <p class="sub">Fields marked <span class="req">*</span> are mandatory. It takes about a minute.</p>
+ <form id="rf" class="panel" method="post" action="{% url 'home' %}#register" novalidate>
+  {% csrf_token %}
+  {% if form.errors %}<p class="err" role="alert" style="font-size:16px;margin-bottom:14px">Please fix the highlighted fields.</p>{% endif %}
+  <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave empty {{ form.website }}</label></div>
+  <div class="grid">
+   <div class="f"><label for="id_name">Full name <span class="req">*</span></label>{{ form.name }}{% for e in form.name.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_phone">Mobile number <span class="req">*</span></label>{{ form.phone }}{% for e in form.phone.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_email">Email <span class="opt">(optional)</span></label>{{ form.email }}{% for e in form.email.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_city">City / area <span class="req">*</span></label>{{ form.city }}{% for e in form.city.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_adults">Adults coming <span class="req">*</span></label>{{ form.adults }}{% for e in form.adults.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_children">Children coming <span class="opt">(optional)</span></label>{{ form.children }}</div>
+  </div>
+  <fieldset class="f" style="margin-top:16px"><legend>Are you a Satsangee? <span class="req">*</span></legend>
+   {% for r in form.satsangee %}<label class="pick">{{ r.tag }} {{ r.choice_label }}</label>{% endfor %}
+   {% for e in form.satsangee.errors %}<small class="err">{{ e }}</small>{% endfor %}</fieldset>
+  <div class="f"><label for="id_centre">Your Satsang centre <span class="opt">(if any)</span></label>{{ form.centre }}</div>
+  <fieldset class="f"><legend>I would like to take part in <span class="opt">(optional)</span></legend>
+   <div class="picks">{% for c in form.interests %}<label class="pick">{{ c.tag }} {{ c.choice_label }}</label>{% endfor %}</div>
+   <p class="hint" id="perfhint">For a performance, please write the performer’s name(s), age and the item (song, dance, etc.) in the message box below.</p></fieldset>
+  <div class="f"><label for="id_message">Message <span class="opt">(optional)</span></label>{{ form.message }}</div>
+  <div class="f"><label class="pick">{{ form.consent }} I agree that the Utsav Committee may contact me about this event. <span class="req">*</span></label>{% for e in form.consent.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+  <button class="btn primary" type="submit">Submit registration</button>
+ </form>
+ {% endif %}
+</div></section>
+<div class="contact" id="contact"><div class="wrap">
+ <h2>We look forward to welcoming you</h2>
+ <p>Organized by Satsang Vihar Bengaluru, Karnashree Layout, Medahalli</p>
+ <p>Utsav Committee · Phone <a href="tel:+919880485128"><b>98804 85128</b></a></p>
+ <div class="cta"><a class="btn primary" href="https://nammasatangviharutsav2026.com" target="_blank" rel="noopener">Register at nammasatangviharutsav2026.com</a><a class="btn ghost" id="cal" href="#" target="_blank" rel="noopener">Add to Google Calendar</a></div>
+</div></div></main>
+<footer>Satsang Vihar Bengaluru · Annual Utsav 2026</footer>
+
+<script src="{% static 'js/site.js' %}"></script>{% if reg %}<script>document.getElementById('done').scrollIntoView();</script>{% endif %}</body></html>

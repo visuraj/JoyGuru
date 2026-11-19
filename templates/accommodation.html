@@ -1,0 +1,50 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Accommodation · Utsav 2026 · Satsang Vihar Bengaluru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/site.css' %}"></head><body><nav><div class="in">
+ <a class="brand" href="{% url 'home' %}">Satsang Vihar Bengaluru</a>
+ <a class="lk" href="{% url 'home' %}">Home</a><a class="lk" href="{% url 'home' %}#schedule">Programme</a><a class="lk" href="{% url 'home' %}#venue">Venue</a>
+ <a class="btn primary" href="{% url 'home' %}#register">Register</a>
+</div></nav>
+<main><section style="padding-top:104px"><div class="wrap">
+ <h2>Accommodation request</h2><hr class="rule">
+ {% if acc %}
+ <div class="panel done" id="done" tabindex="-1">
+  <h3>Request received</h3>
+  <p>Thank you, <b>{{ acc.name }}</b>. Your request ID is <b>{{ acc.acc_id }}</b>.</p>
+  <p>{{ acc.acc_type }} · {{ acc.devotees }} devotee(s) · Arrival {{ acc.eta_date }} {{ acc.eta_time }} · Departure {{ acc.etd_date }} {{ acc.etd_time }} · {{ acc.transport }}</p>
+  <p class="note">Your request is saved with the Utsav Committee. Please keep your request ID.</p>
+  <div class="cta" style="justify-content:flex-start"><a class="btn primary" href="{{ wa_url }}" target="_blank" rel="noopener">Send details on WhatsApp</a><a class="btn ghost" href="{% url 'accommodation' %}">Another request</a><a class="btn ghost" href="{% url 'home' %}#register">Register for Utsav</a></div>
+ </div>
+ {% else %}
+ <p class="sub">For devotees coming from outside Bengaluru. Fields marked <span class="req">*</span> are mandatory. To register for the Utsav programme itself, use the <a href="{% url 'home' %}#register" style="color:var(--blue);font-weight:600">registration form</a>.</p>
+ <form class="panel" id="rf" method="post" action="{% url 'accommodation' %}" novalidate>
+  {% csrf_token %}
+  {% if form.errors %}<p class="err" role="alert" style="font-size:16px;margin-bottom:14px">Please fix the highlighted fields.</p>{% endif %}
+  <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave empty {{ form.website }}</label></div>
+  <div class="grid">
+   <div class="f"><label for="id_name">Devotee name <span class="req">*</span></label>{{ form.name }}{% for e in form.name.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_family_code">Family code <span class="req">*</span></label>{{ form.family_code }}{% for e in form.family_code.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_whatsapp">WhatsApp number <span class="req">*</span></label>{{ form.whatsapp }}{% for e in form.whatsapp.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_city">City <span class="req">*</span></label>{{ form.city }}{% for e in form.city.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_satsang_vihar">Satsang Vihar <span class="req">*</span></label>{{ form.satsang_vihar }}{% for e in form.satsang_vihar.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_devotees">Total number of devotees <span class="req">*</span></label>{{ form.devotees }}{% for e in form.devotees.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+  </div>
+  <fieldset class="f" style="margin-top:16px"><legend>Accommodation type <span class="req">*</span></legend>
+   {% for r in form.acc_type %}<label class="pick">{{ r.tag }} {{ r.choice_label }}</label>{% endfor %}{% for e in form.acc_type.errors %}<small class="err">{{ e }}</small>{% endfor %}</fieldset>
+  <div class="grid" style="margin-bottom:16px">
+   <div class="f"><label for="id_eta_date">Arrival date (ETA) <span class="req">*</span></label>{{ form.eta_date }}{% for e in form.eta_date.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_eta_time">Arrival time <span class="opt">(approximate)</span></label>{{ form.eta_time }}{% for e in form.eta_time.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_etd_date">Departure date (ETD) <span class="req">*</span></label>{{ form.etd_date }}{% for e in form.etd_date.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+   <div class="f"><label for="id_etd_time">Departure time <span class="opt">(approximate)</span></label>{{ form.etd_time }}{% for e in form.etd_time.errors %}<small class="err">{{ e }}</small>{% endfor %}</div>
+  </div>
+  <fieldset class="f"><legend>Mode of transport <span class="req">*</span></legend>
+   {% for r in form.transport %}<label class="pick">{{ r.tag }} {{ r.choice_label }}</label>{% endfor %}{% for e in form.transport.errors %}<small class="err">{{ e }}</small>{% endfor %}</fieldset>
+  <button class="btn primary" type="submit">Submit request</button>
+ </form>
+ {% endif %}
+</div></section></main>
+<footer>Satsang Vihar Bengaluru · Annual Utsav 2026</footer>{% if acc %}<script>document.getElementById('done').scrollIntoView();</script>{% endif %}</body></html>

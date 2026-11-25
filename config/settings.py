@@ -1,8 +1,10 @@
 import os
 from pathlib import Path
 import dj_database_url
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 DEBUG = os.environ.get("DEBUG", "0") == "1"
 SECRET_KEY = os.environ.get("SECRET_KEY") or ("dev-only-key-change-me" if DEBUG else None)
 if not SECRET_KEY:
